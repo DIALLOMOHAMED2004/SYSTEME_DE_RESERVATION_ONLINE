@@ -51,3 +51,6 @@ Thumbs.db
 # !*/migrations
 # !*/migrations/*.py
 # !*/migrations/*.pyc
+
+django_project_source.txt
+extract_django_source.py
