@@ -1,0 +1,126 @@
+.ui-test-hero {
+    padding: clamp(2rem, 5vw, 4.5rem);
+    border-radius: 24px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(139, 41, 66, 0.22),
+            rgba(42, 38, 34, 0.96)
+        );
+    box-shadow: var(--shadow-pronounced);
+    margin-bottom: 3rem;
+}
+
+.ui-test-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    margin-bottom: 1rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: var(--radius-pill);
+
+    background-color: rgba(139, 41, 66, 0.20);
+    border: 1px solid var(--border-primary);
+    color: var(--color-primary-light);
+
+    font-size: 0.92rem;
+    font-weight: 650;
+}
+
+.ui-test-lead {
+    max-width: 760px;
+    font-size: 1.12rem;
+    margin-bottom: 2rem;
+}
+
+.ui-test-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.ui-test-section {
+    margin-top: 3rem;
+}
+
+.ui-test-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.ui-test-card {
+    min-height: 220px;
+}
+
+.ui-test-card p:last-child {
+    margin-bottom: 0;
+}
+
+.mock-film-card {
+    overflow: hidden;
+    padding: 0;
+}
+
+.mock-film-poster {
+    height: 220px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(139, 41, 66, 0.85),
+            rgba(166, 103, 78, 0.55),
+            rgba(33, 30, 28, 0.95)
+        );
+    display: flex;
+    align-items: end;
+    padding: 1.25rem;
+}
+
+.mock-film-poster span {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.mock-film-content {
+    padding: 1.25rem;
+}
+
+.palette-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 1rem;
+}
+
+.palette-swatch {
+    width: 78px;
+    height: 78px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-soft);
+}
+
+.swatch-primary {
+    background-color: var(--color-primary);
+}
+
+.swatch-primary-light {
+    background-color: var(--color-primary-light);
+}
+
+.swatch-bronze {
+    background-color: var(--color-accent-bronze);
+}
+
+.swatch-container {
+    background-color: var(--bg-container);
+}
+
+@media (max-width: 1000px) {
+    .ui-test-grid {
+        grid-template-columns: 1fr;
+    }
+}

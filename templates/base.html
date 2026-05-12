@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Movie Review{% endblock %}</title>
+
+    <!-- Styles globaux Movie Review -->
+    <link rel="stylesheet" href="{% static 'css/variables.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pages.css' %}">
+</head>
+<body>
+
+    {% include "includes/navbar.html" %}
+
+    <main class="main-content">
+        <div class="page-shell">
+
+            {% if messages %}
+                <section class="messages-wrapper" aria-label="Messages système">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </section>
+            {% endif %}
+
+            {% block content %}
+            {% endblock %}
+
+        </div>
+    </main>
+
+    {% include "includes/footer.html" %}
+
+</body>
+</html>

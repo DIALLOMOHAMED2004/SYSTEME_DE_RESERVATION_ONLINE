@@ -1,0 +1,132 @@
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+
+    padding: 0.85rem 1.35rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+
+    font-weight: 650;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-soft);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-light);
+    box-shadow: var(--shadow-medium);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-primary);
+    border-color: var(--border-soft);
+}
+
+.btn-secondary:hover {
+    border-color: var(--border-primary);
+    background-color: rgba(139, 41, 66, 0.10);
+}
+
+.btn-sm {
+    padding: 0.7rem 1.1rem;
+    font-size: 0.95rem;
+}
+
+.card {
+    background-color: var(--bg-container);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    padding: 1.5rem;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-medium);
+}
+
+.card-soft {
+    background-color: var(--bg-container-secondary);
+    border: 1px solid var(--border-soft);
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.85rem;
+    font-weight: 650;
+}
+
+.badge-primary {
+    background-color: rgba(139, 41, 66, 0.25);
+    color: var(--color-primary-light);
+    border: 1px solid var(--border-primary);
+}
+
+.badge-bronze {
+    background-color: rgba(166, 103, 78, 0.18);
+    color: #d4a088;
+    border: 1px solid rgba(166, 103, 78, 0.35);
+}
+
+.alert {
+    padding: 1rem 1.15rem;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    border: 1px solid transparent;
+    box-shadow: var(--shadow-soft);
+}
+
+.alert-success {
+    background-color: rgba(45, 90, 61, 0.95);
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.alert-error {
+    background-color: rgba(139, 58, 58, 0.95);
+    color: var(--text-primary);
+}
+
+.alert-warning {
+    background-color: rgba(139, 107, 46, 0.95);
+    color: var(--text-primary);
+}
+
+.alert-info {
+    background-color: rgba(58, 90, 125, 0.95);
+    color: var(--text-primary);
+}
+
+.meta-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    color: var(--text-tertiary);
+    font-size: 0.95rem;
+}
+
+.surface-highlight {
+    background-color: var(--bg-soft-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+}

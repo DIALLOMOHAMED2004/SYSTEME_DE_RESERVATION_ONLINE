@@ -1,0 +1,55 @@
+:root {
+    /* Palette principale - style Cinéphile Moderne */
+    --color-primary: #8B2942;
+    --color-primary-light: #A84E63;
+    --color-primary-dark: #6B1F33;
+
+    --color-accent-bronze: #A6674E;
+    --color-accent-teal: #3D6666;
+
+    /* Fonds */
+    --bg-page: #1A1816;
+    --bg-navbar: #1C1816;
+    --bg-container: #2A2622;
+    --bg-container-secondary: #211E1C;
+    --bg-soft-primary: rgba(139, 41, 66, 0.15);
+
+    /* Textes */
+    --text-primary: rgba(255, 255, 255, 0.95);
+    --text-secondary: rgba(255, 255, 255, 0.75);
+    --text-tertiary: rgba(255, 255, 255, 0.55);
+    --text-muted: rgba(255, 255, 255, 0.35);
+
+    /* États fonctionnels */
+    --success: #2D5A3D;
+    --error: #8B3A3A;
+    --warning: #8B6B2E;
+    --info: #3A5A7D;
+
+    /* Bordures */
+    --border-soft: rgba(255, 255, 255, 0.10);
+    --border-primary: rgba(139, 41, 66, 0.30);
+
+    /* Rayons */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-pill: 999px;
+
+    /* Ombres */
+    --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.25);
+    --shadow-medium: 0 6px 24px rgba(0, 0, 0, 0.35);
+    --shadow-pronounced:
+        0 8px 32px rgba(139, 41, 66, 0.20),
+        0 2px 8px rgba(0, 0, 0, 0.40);
+
+    /* Espacements */
+    --space-xs: 8px;
+    --space-sm: 12px;
+    --space-md: 20px;
+    --space-lg: 32px;
+    --space-xl: 48px;
+
+    /* Largeur contenu */
+    --container-max-width: 1200px;
+}
