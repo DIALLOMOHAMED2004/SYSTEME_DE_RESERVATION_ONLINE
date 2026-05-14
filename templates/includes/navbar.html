@@ -2,15 +2,15 @@
     <nav class="navbar">
         <div class="navbar-left">
             <div class="nav-links">
-                <a href="#" class="nav-link nav-link-active">Accueil</a>
-                <a href="#" class="nav-link">Films</a>
-                <a href="#" class="nav-link">Classement</a>
+                <a href="{% url 'movies:accueil' %}" class="nav-link nav-link-active">Accueil</a>
+                <a href="{% url 'movies:films' %}" class="nav-link">Films</a>
+                <a href="{% url 'movies:classement' %}" class="nav-link">Classement</a>
             </div>
         </div>
 
         <div class="navbar-actions">
-            <a href="#" class="nav-auth-link">Connexion</a>
-            <a href="#" class="btn btn-primary btn-sm">Inscription</a>
+            <a href="{% url 'accounts:connexion' %}" class="nav-auth-link">Connexion</a>
+            <a href="{% url 'accounts:inscription' %}" class="btn btn-primary btn-sm">Inscription</a>
         </div>
     </nav>
 </header>
