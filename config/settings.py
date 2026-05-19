@@ -132,3 +132,9 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+
+# Redirections d'authentification utilisées par les vues accounts.
+LOGIN_URL = "accounts:connexion"
+LOGIN_REDIRECT_URL = "accounts:profil"
+LOGOUT_REDIRECT_URL = "movies:accueil"

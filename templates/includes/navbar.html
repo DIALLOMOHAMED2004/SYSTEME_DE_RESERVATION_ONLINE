@@ -2,27 +2,29 @@
     <nav class="navbar">
         <div class="navbar-left">
 
-            <a class="brand" href="{% url 'movies:ui_test' %}">
-                <span class="brand-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none">
-                        <path d="M4 6.5C4 5.12 5.12 4 6.5 4h11C18.88 4 20 5.12 20 6.5v11c0 1.38-1.12 2.5-2.5 2.5h-11C5.12 20 4 18.88 4 17.5v-11Z" stroke="currentColor" stroke-width="1.8"/>
-                        <path d="M8 4v16M16 4v16M4 9h4M4 15h4M16 9h4M16 15h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                    </svg>
-                </span>
-
+            <a href="{% url 'movies:accueil' %}" class="brand">
+                <span class="brand-mark">MR</span>
                 <span class="brand-text">Movie Review</span>
             </a>
 
             <div class="nav-links">
-                <a href="#" class="nav-link nav-link-active">Accueil</a>
-                <a href="#" class="nav-link">Films</a>
-                <a href="#" class="nav-link">Classement</a>
+                <a href="{% url 'movies:accueil' %}" class="nav-link {% if request.resolver_match.url_name == 'accueil' %}nav-link-active{% endif %}">Accueil</a>
+                <a href="{% url 'movies:films' %}" class="nav-link {% if request.resolver_match.url_name == 'films' %}nav-link-active{% endif %}">Films</a>
+                <a href="{% url 'movies:classement' %}" class="nav-link {% if request.resolver_match.url_name == 'classement' %}nav-link-active{% endif %}">Classement</a>
             </div>
         </div>
 
         <div class="navbar-actions">
-            <a href="#" class="nav-auth-link">Connexion</a>
-            <a href="#" class="btn btn-primary btn-sm">Inscription</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'accounts:profil' %}" class="nav-auth-link {% if request.resolver_match.url_name == 'profil' %}nav-link-active{% endif %}">Profil</a>
+                <form method="post" action="{% url 'accounts:deconnexion' %}" class="nav-logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-auth-link nav-button">Déconnexion</button>
+                </form>
+            {% else %}
+                <a href="{% url 'accounts:connexion' %}" class="nav-auth-link {% if request.resolver_match.url_name == 'connexion' %}nav-link-active{% endif %}">Connexion</a>
+                <a href="{% url 'accounts:inscription' %}" class="btn btn-primary btn-sm">Inscription</a>
+            {% endif %}
         </div>
     </nav>
 </header>
