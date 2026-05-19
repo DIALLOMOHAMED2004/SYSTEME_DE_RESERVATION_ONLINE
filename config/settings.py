@@ -132,3 +132,14 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+
+# Redirections d'authentification utilisées par les vues accounts.
+LOGIN_URL = "accounts:connexion"
+LOGIN_REDIRECT_URL = "accounts:profil"
+LOGOUT_REDIRECT_URL = "movies:accueil"
+
+
+# Email de développement : les emails sont affichés dans la console locale.
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+DEFAULT_FROM_EMAIL = "no-reply@movie-review.local"

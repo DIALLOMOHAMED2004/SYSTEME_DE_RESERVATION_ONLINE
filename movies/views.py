@@ -1,13 +1,19 @@
-from django.shortcuts import render
+from django.views.generic import TemplateView
 
 
-def accueil(request):
-    return render(request, "movies/home.html")
+class HomeView(TemplateView):
+    """Page d'accueil minimale utilisée par les redirections du projet."""
+
+    template_name = "movies/home.html"
 
 
-def films(request):
-    return render(request, "movies/movie_list.html")
+class MovieListView(TemplateView):
+    """Placeholder du catalogue, conservé pour les liens de navigation."""
+
+    template_name = "movies/movie_list.html"
 
 
-def classement(request):
-    return render(request, "movies/ranking.html")
+class RankingView(TemplateView):
+    """Placeholder du classement, conservé pour les liens de navigation."""
+
+    template_name = "movies/ranking.html"
