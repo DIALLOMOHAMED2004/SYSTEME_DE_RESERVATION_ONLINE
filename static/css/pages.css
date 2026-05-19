@@ -132,6 +132,18 @@
     padding: 2rem 0;
 }
 
+.placeholder-page {
+    max-width: 760px;
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    background-color: var(--bg-container);
+    box-shadow: var(--shadow-soft);
+}
+
+.placeholder-page p {
+    max-width: 620px;
+}
+
 .auth-layout-wide {
     max-width: 640px;
 }
@@ -172,14 +184,21 @@
 }
 
 .auth-alt a,
-.back-link {
+.back-link,
+.auth-inline-link {
     color: var(--color-primary-light);
     font-weight: 650;
 }
 
 .auth-alt a:hover,
-.back-link:hover {
+.back-link:hover,
+.auth-inline-link:hover {
     color: var(--text-primary);
+}
+
+.auth-inline-link {
+    align-self: flex-start;
+    font-size: 0.95rem;
 }
 
 .back-link {

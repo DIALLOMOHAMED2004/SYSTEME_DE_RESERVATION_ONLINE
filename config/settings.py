@@ -138,3 +138,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 LOGIN_URL = "accounts:connexion"
 LOGIN_REDIRECT_URL = "accounts:profil"
 LOGOUT_REDIRECT_URL = "movies:accueil"
+
+
+# Email de développement : les emails sont affichés dans la console locale.
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+DEFAULT_FROM_EMAIL = "no-reply@movie-review.local"

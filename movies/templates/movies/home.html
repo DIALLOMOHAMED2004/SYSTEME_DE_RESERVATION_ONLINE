@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Accueil - Movie Review{% endblock %}
+
+{% block content %}
+<section class="placeholder-page">
+    <h1>Movie Review</h1>
+    <p>
+        Bienvenue sur Movie Review. Les pages films et critiques seront enrichies
+        dans les prochaines phases du projet.
+    </p>
+    <a href="{% url 'movies:films' %}" class="btn btn-primary">Voir les films</a>
+</section>
+{% endblock %}

@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth import authenticate, get_user_model
 from django.contrib.auth.forms import (
     AuthenticationForm,
+    PasswordResetForm,
+    SetPasswordForm,
     UserCreationForm,
     UsernameField,
 )
@@ -21,6 +23,7 @@ class RegisterForm(UserCreationForm):
         widget=forms.EmailInput(
             attrs={
                 "class": "form-control",
+                "autocomplete": "email",
                 "placeholder": "exemple@email.com",
             }
         ),
@@ -33,6 +36,7 @@ class RegisterForm(UserCreationForm):
             "username": forms.TextInput(
                 attrs={
                     "class": "form-control",
+                    "autocomplete": "username",
                     "placeholder": "Votre nom d'utilisateur",
                 }
             ),
@@ -49,6 +53,7 @@ class RegisterForm(UserCreationForm):
         self.fields["password1"].widget.attrs.update(
             {
                 "class": "form-control",
+                "autocomplete": "new-password",
                 "placeholder": "Votre mot de passe",
             }
         )
@@ -56,12 +61,13 @@ class RegisterForm(UserCreationForm):
         self.fields["password2"].widget.attrs.update(
             {
                 "class": "form-control",
+                "autocomplete": "new-password",
                 "placeholder": "Confirmez votre mot de passe",
             }
         )
 
     def clean_email(self):
-        email = self.cleaned_data["email"].strip()
+        email = self.cleaned_data["email"].strip().lower()
         if User.objects.filter(email__iexact=email).exists():
             raise ValidationError("Cette adresse email est déjà utilisée.")
         return email
@@ -76,6 +82,7 @@ class EmailOrUsernameAuthenticationForm(AuthenticationForm):
             attrs={
                 "autofocus": True,
                 "class": "form-control",
+                "autocomplete": "username",
                 "placeholder": "Nom d'utilisateur ou email",
             }
         ),
@@ -123,7 +130,47 @@ class EmailOrUsernameAuthenticationForm(AuthenticationForm):
         self.fields["password"].widget.attrs.update(
             {
                 "class": "form-control",
+                "autocomplete": "current-password",
                 "placeholder": "Votre mot de passe",
+            }
+        )
+
+
+class StyledPasswordResetForm(PasswordResetForm):
+    """Formulaire natif Django stylé pour la demande de réinitialisation."""
+
+    email = forms.EmailField(
+        label="Adresse email",
+        widget=forms.EmailInput(
+            attrs={
+                "class": "form-control",
+                "autocomplete": "email",
+                "placeholder": "Votre adresse email",
+            }
+        ),
+    )
+
+
+class StyledSetPasswordForm(SetPasswordForm):
+    """Formulaire natif Django stylé pour définir un nouveau mot de passe."""
+
+    def __init__(self, user, *args, **kwargs):
+        super().__init__(user, *args, **kwargs)
+        self.fields["new_password1"].label = "Nouveau mot de passe"
+        self.fields["new_password1"].help_text = "Au moins 8 caractères recommandés."
+        self.fields["new_password1"].widget.attrs.update(
+            {
+                "class": "form-control",
+                "autocomplete": "new-password",
+                "placeholder": "Votre nouveau mot de passe",
+            }
+        )
+        self.fields["new_password2"].label = "Confirmer le nouveau mot de passe"
+        self.fields["new_password2"].widget.attrs.update(
+            {
+                "class": "form-control",
+                "autocomplete": "new-password",
+                "placeholder": "Confirmez votre nouveau mot de passe",
             }
         )
 
@@ -142,9 +189,17 @@ class ProfileUpdateForm(forms.ModelForm):
             "username": "Votre nom d'utilisateur sera visible publiquement.",
         }
         widgets = {
-            "username": forms.TextInput(attrs={"class": "form-control"}),
-            "email": forms.EmailInput(attrs={"class": "form-control"}),
+            "username": forms.TextInput(
+                attrs={"class": "form-control", "autocomplete": "username"}
+            ),
+            "email": forms.EmailInput(
+                attrs={"class": "form-control", "autocomplete": "email"}
+            ),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["email"].required = True
 
     def clean_username(self):
         username = self.cleaned_data["username"].strip()
@@ -156,7 +211,7 @@ class ProfileUpdateForm(forms.ModelForm):
         return username
 
     def clean_email(self):
-        email = self.cleaned_data["email"].strip()
+        email = self.cleaned_data["email"].strip().lower()
         if not email:
             raise ValidationError("L'adresse email est obligatoire.")
 
