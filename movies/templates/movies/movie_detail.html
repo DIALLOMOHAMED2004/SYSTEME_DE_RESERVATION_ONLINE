@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}{{ film.titre }} - Movie Review{% endblock %}
+
+{% block content %}
+<section class="catalog-page">
+    <div class="page-header">
+        <a href="{% url 'movies:films' %}" class="btn btn-secondary btn-sm">Retour au catalogue</a>
+        <h1>{{ film.titre }}</h1>
+    </div>
+
+    <article class="film-detail card">
+        <div class="film-detail-poster">
+            {% if film.affiche %}
+                <img src="{{ film.affiche.url }}" alt="Affiche de {{ film.titre }}">
+            {% else %}
+                <div class="film-card-placeholder">
+                    <span>Aucune affiche</span>
+                </div>
+            {% endif %}
+        </div>
+        <div class="film-detail-body">
+            <p class="film-meta">{{ film.genre.nom }} · {{ film.annee_sortie }} · {{ film.duree_minutes }} min</p>
+            <p class="film-rating">{{ film.afficher_note }}</p>
+            <p class="film-reviews">{{ film.nombre_critiques }} critique{{ film.nombre_critiques|pluralize }}</p>
+            <div class="film-synopsis">
+                <h2>Synopsis</h2>
+                <p>{{ film.synopsis }}</p>
+            </div>
+        </div>
+    </article>
+</section>
+{% endblock %}
