@@ -9,6 +9,9 @@
         Bienvenue sur Movie Review. Les pages films et critiques seront enrichies
         dans les prochaines phases du projet.
     </p>
-    <a href="{% url 'movies:films' %}" class="btn btn-primary">Voir les films</a>
+    <div class="home-actions">
+        <a href="{% url 'movies:films' %}" class="btn btn-primary">Voir les films</a>
+        <a href="{% url 'movies:classement' %}" class="btn btn-secondary">Voir le classement</a>
+    </div>
 </section>
 {% endblock %}

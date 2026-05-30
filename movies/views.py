@@ -61,6 +61,38 @@ class FilmDetailView(DetailView):
 
 
 class RankingView(TemplateView):
-    """Placeholder du classement, conservé pour les liens de navigation."""
+    """
+    Affiche deux classements des films :
+    1. Films les mieux notés (par note moyenne décroissante)
+    2. Films les plus populaires (par nombre de critiques décroissant)
+    """
 
     template_name = "movies/ranking.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Requête de base avec optimisation select_related
+        films_base = Film.objects.select_related("genre")
+        
+        # Classement des films les mieux notés
+        # Filtrer : note moyenne non nulle + au moins 1 critique
+        films_mieux_notes = (
+            films_base
+            .filter(note_moyenne__isnull=False, nombre_critiques__gt=0)
+            .order_by("-note_moyenne", "-nombre_critiques", "titre")[:20]
+        )
+        
+        # Classement des films les plus populaires
+        # Filtrer : au moins 1 critique
+        films_populaires = (
+            films_base
+            .filter(nombre_critiques__gt=0)
+            .order_by("-nombre_critiques", "-note_moyenne", "titre")[:20]
+        )
+        
+        context.update({
+            "films_mieux_notes": films_mieux_notes,
+            "films_populaires": films_populaires,
+        })
+        return context
