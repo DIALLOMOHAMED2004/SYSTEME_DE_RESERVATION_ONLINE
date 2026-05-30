@@ -1,4 +1,3 @@
-from datetime import date
 from decimal import Decimal, InvalidOperation
 
 from django.views.generic import DetailView, TemplateView
@@ -22,24 +21,33 @@ class MovieListView(TemplateView):
         films = Film.objects.select_related("genre").all()
         genres = Genre.objects.all()
         annees = [date.year for date in Film.objects.dates("date_sortie", "year", order="DESC")]
+        genre_ids = set(genres.values_list("id", flat=True))
+        annees_valides = set(annees)
 
         selected_genre = self.request.GET.get("genre", "").strip()
         selected_annee = self.request.GET.get("annee", "").strip()
         selected_note_min = self.request.GET.get("note_min", "").strip()
 
-        if selected_genre.isdigit():
+        if selected_genre.isdigit() and int(selected_genre) in genre_ids:
             films = films.filter(genre_id=int(selected_genre))
+        else:
+            selected_genre = ""
 
-        if selected_annee.isdigit():
+        if selected_annee.isdigit() and int(selected_annee) in annees_valides:
             films = films.filter(date_sortie__year=int(selected_annee))
+        else:
+            selected_annee = ""
 
         if selected_note_min:
             try:
                 note_valeur = Decimal(selected_note_min)
             except (InvalidOperation, ValueError):
                 note_valeur = None
-            else:
+
+            if note_valeur is not None and note_valeur.is_finite() and Decimal("0") <= note_valeur <= Decimal("5"):
                 films = films.filter(note_moyenne__gte=note_valeur)
+            else:
+                selected_note_min = ""
 
         context.update({
             "films": films,
