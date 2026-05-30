@@ -100,8 +100,8 @@ class MovieListView(TemplateView):
             else:
                 selected_note_min = ""
 
-            else:
-                films = films.filter(note_moyenne__gte=note_valeur)
+        else:
+            films = films.filter(note_moyenne__gte=note_valeur)
 
             context.update({
                 "films": films,

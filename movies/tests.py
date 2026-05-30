@@ -23,7 +23,7 @@ class MovieListViewTests(TestCase):
         self.genre_drama = Genre.objects.create(nom="Drame")
 
 
-        self.film_note = Film.objects.create(
+        self.film_note = Film.objects.create()
 
         Film.objects.create(
             titre="Film noté",
@@ -35,7 +35,7 @@ class MovieListViewTests(TestCase):
             nombre_critiques=5,
         )
 
-        self.film_sans_note = Film.objects.create(
+        self.film_sans_note = Film.objects.create()
 
         Film.objects.create(
 
@@ -283,3 +283,4 @@ class CommentairePhase5Tests(TestCase):
 
         self.assertContains(response, 'name="next"')
         self.assertContains(response, f'value="{next_target}"')
+
