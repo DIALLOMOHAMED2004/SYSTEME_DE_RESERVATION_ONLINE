@@ -1,8 +1,5 @@
 from django.urls import path
 
-
-from .views import FilmDetailView, HomeView, MovieListView, RankingView
-
 from .views import (
     FilmDetailView,
     HomeView,

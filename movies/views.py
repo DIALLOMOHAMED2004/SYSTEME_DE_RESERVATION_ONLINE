@@ -1,10 +1,3 @@
-
-from decimal import Decimal, InvalidOperation
-
-from django.views.generic import DetailView, TemplateView
-
-from .models import Film, Genre
-
 from datetime import date
 from decimal import Decimal, InvalidOperation
 
@@ -71,7 +64,6 @@ class MovieListView(TemplateView):
         selected_annee = self.request.GET.get("annee", "").strip()
         selected_note_min = self.request.GET.get("note_min", "").strip()
 
-
         if selected_genre.isdigit() and int(selected_genre) in genre_ids:
             films = films.filter(genre_id=int(selected_genre))
         else:
@@ -82,35 +74,25 @@ class MovieListView(TemplateView):
         else:
             selected_annee = ""
 
-        if selected_genre.isdigit():
-            films = films.filter(genre_id=int(selected_genre))
-
-        if selected_annee.isdigit():
-            films = films.filter(date_sortie__year=int(selected_annee))
-
         if selected_note_min:
             try:
                 note_valeur = Decimal(selected_note_min)
             except (InvalidOperation, ValueError):
                 note_valeur = None
 
-
             if note_valeur is not None and note_valeur.is_finite() and Decimal("0") <= note_valeur <= Decimal("5"):
                 films = films.filter(note_moyenne__gte=note_valeur)
             else:
                 selected_note_min = ""
 
-        else:
-            films = films.filter(note_moyenne__gte=note_valeur)
-
-            context.update({
-                "films": films,
-                "genres": genres,
-                "annees": annees,
-                "nombre_films": films.count(),
-                "selected_genre": selected_genre,
-                "selected_annee": selected_annee,
-                "selected_note_min": selected_note_min,
+        context.update({
+            "films": films,
+            "genres": genres,
+            "annees": annees,
+            "nombre_films": films.count(),
+            "selected_genre": selected_genre,
+            "selected_annee": selected_annee,
+            "selected_note_min": selected_note_min,
         })
         return context
 

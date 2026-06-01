@@ -10,6 +10,11 @@ class CommentForm(forms.ModelForm):
         model = Commentaire
         fields = ("texte",)
         labels = {"texte": "Votre commentaire"}
+        error_messages = {
+            "texte": {
+                "required": "Le commentaire ne peut pas être vide.",
+            }
+        }
         widgets = {
             "texte": forms.Textarea(
                 attrs={

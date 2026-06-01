@@ -1,11 +1,6 @@
 from datetime import date
 from decimal import Decimal
 
-from django.test import TestCase
-from django.urls import reverse
-
-from .models import Film, Genre
-
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
@@ -22,10 +17,7 @@ class MovieListViewTests(TestCase):
         self.genre_action = Genre.objects.create(nom="Action")
         self.genre_drama = Genre.objects.create(nom="Drame")
 
-
-        self.film_note = Film.objects.create()
-
-        Film.objects.create(
+        self.film_note = Film.objects.create(
             titre="Film noté",
             synopsis="Synopsis 1",
             genre=self.genre_action,
@@ -35,10 +27,7 @@ class MovieListViewTests(TestCase):
             nombre_critiques=5,
         )
 
-        self.film_sans_note = Film.objects.create()
-
-        Film.objects.create(
-
+        self.film_sans_note = Film.objects.create(
             titre="Film sans note",
             synopsis="Synopsis 2",
             genre=self.genre_drama,
@@ -283,4 +272,3 @@ class CommentairePhase5Tests(TestCase):
 
         self.assertContains(response, 'name="next"')
         self.assertContains(response, f'value="{next_target}"')
-
